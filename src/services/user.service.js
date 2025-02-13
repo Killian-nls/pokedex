@@ -29,22 +29,23 @@ class userService {
         let result;
         try {
             result = await this.userModel.findById(id);
+            result = result.role
         } catch (error) {
             result = { error: error };
         }
         return result;
     }
 
-    async updateUser(id, firstname = null, lastname = null, role = null, email = null, password = null) {
+    async updateUser(id, username = null, firstname = null, lastname = null, role = null, email = null, password = null) {
         let user = {};
+        if (username) user.username = username;
         if (firstname) user.firstname = firstname;
         if (lastname) user.lastname = lastname;
         if (email) user.email = email;
-        if (password) user.password = await bcrypt.hashSync(password, 10);
+        if (password) user.password = await bcrypt.hash(password, 10);
         if (role) user.role = role;
-
         try {
-            result = await this.userModel.findByIdAndUpdate(id, user);
+            let result = await this.userModel.findByIdAndUpdate(id, user);
             return result;
         } catch (e) {
             return { error: e };
@@ -60,11 +61,12 @@ class userService {
         }
     }
 
-    async createUser(firstname, lastname, role, email, password) {
+    async createUser(username, firstname, lastname, role, email, password) {
         const hashedPassword = await bcrypt.hashSync(password, 10);
         try {
             const result = await this.userModel.create
             ({ 
+                username: username,
                 firstname: firstname, 
                 lastname: lastname, 
                 role: role,

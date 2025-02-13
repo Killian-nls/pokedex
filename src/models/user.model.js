@@ -11,6 +11,7 @@ let validateLastname = function(lastname){
 }
 
 const userSchema = new mongoose.Schema({
+    username: String,
     firstname: String,
     lastname: {
         type: String,

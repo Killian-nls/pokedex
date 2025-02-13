@@ -3,11 +3,12 @@ const UserService = require('../services/user.service');
 const userService = new UserService();
 
 exports.createUser = async (req, res) => {
-    if (await !isAdmin(req.auth.userId)) {
+    req.auth.role = await getRole(req.auth.userId);
+    if (req.auth.role != 'admin') {
         return res.status(403).json({ error: 'You are not allowed to create a user' });
     }
-    const { firstname, lastname, role, email, password } = req.body;
-    const result = await userService.createUser(firstname, lastname, role, email, password);
+    const { username, firstname, lastname, role, email, password } = req.body;
+    const result = await userService.createUser(username, firstname, lastname, role, email, password);
     if (result.error) {
         return res.status(500).json(result);
     }
@@ -15,11 +16,12 @@ exports.createUser = async (req, res) => {
 }
 
 exports.createAdmin = async (req, res) => {
-    // if (await !isAdmin(req.auth.userId)) {
+    req.auth.role = await getRole(req.auth.userId);
+    // if (req.auth.role != 'admin') {
     //     return res.status(403).json({ error: 'You are not allowed to create an admin' });
     // }
-    const { firstname, lastname, email, password } = req.body;
-    const result = await userService.createUser(firstname, lastname, 'admin', email, password);
+    const { username, firstname, lastname, email, password } = req.body;
+    const result = await userService.createUser(username, firstname, lastname, 'admin', email, password);
     console.log(result);
     if (result.error) {
         return res.status(500).json(result);
@@ -28,7 +30,8 @@ exports.createAdmin = async (req, res) => {
 }
 
 exports.getAllUsers = async (req, res) => {
-    if (await !isAdmin(req.auth.userId)) {
+    req.auth.role = await getRole(req.auth.userId);
+    if (req.auth.role != 'admin') {
         return res.status(403).json({ error: 'You are not allowed to get all users' });
     }
     const result = await userService.getAllUsers();
@@ -39,6 +42,7 @@ exports.getAllUsers = async (req, res) => {
 }
 
 exports.getUserByIdOrMail = async (req, res) => {
+    req.auth.role = await getRole(req.auth.userId);
     const id_or_mail = req.params.id_or_mail;
     let result;
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id_or_mail)) {
@@ -49,7 +53,7 @@ exports.getUserByIdOrMail = async (req, res) => {
     if (result.error) {
         return res.status(500).json(result);
     }
-    if (result._id !== req.auth.userId && await !isAdmin(req.auth.userId)) {
+    if (result._id !== req.auth.userId && req.auth.role != 'admin') {
         //Ne pas envoyer les données sensibles
         return res.status(200).json({
             'firstname': result.firstname,
@@ -60,12 +64,13 @@ exports.getUserByIdOrMail = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
+    req.auth.role = await getRole(req.auth.userId);
     const id = req.params.id;
-    if (id !== req.auth.userId && await !isAdmin(req.auth.userId)) {
+    if (id !== req.auth.userId && req.auth.role != 'admin') {
         return res.status(403).json({ error: 'You are not allowed to update this user' });
     }
-    const { firstname, lastname, role, email, password } = req.body;
-    const result = await userService.updateUser(id, firstname, lastname, role, email, password);
+    const { username, firstname, lastname, role, email, password } = req.body;
+    const result = await userService.updateUser(id, username, firstname, lastname, role, email, password);
     if (result.error) {
         return res.status(500).json(result);
     }
@@ -73,8 +78,9 @@ exports.updateUser = async (req, res) => {
 }
 
 exports.deleteUser = async (req, res) => {
+    req.auth.role = await getRole(req.auth.userId);
     const id = req.params.id;
-    if (id !== req.auth.userId && await !isAdmin(req.auth.userId)) {
+    if (id !== req.auth.userId && req.auth.role != 'admin') {
         return res.status(403).json({ error: 'You are not allowed to delete this user' });
     }
     const result = await userService.deleteUser(id);
@@ -85,8 +91,8 @@ exports.deleteUser = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
-    const result = await userService.createUser(firstname, lastname, 'user', email, password);
+    const { username, firstname, lastname, email, password } = req.body;
+    const result = await userService.createUser(username, firstname, lastname, 'user', email, password);
     if (result.error) {
         return res.status(500).json(result);
     }
@@ -95,7 +101,6 @@ exports.register = async (req, res) => {
 
 exports.login = async (req,res)=> {
     const result = await userService.login(req.body.email, req.body.password)
-    console.log(req.body);
     if (result.error) {
         return res.status(400).send(result);
     }
@@ -110,10 +115,6 @@ exports.login = async (req,res)=> {
     });
 }
 
-async function isAdmin(userId) {
-    const userRole = await userService.getRole(userId);
-    if (userRole === 'admin') {
-        return true;
-    }
-    return false;
+async function getRole(userId) {
+    return await userService.getRole(userId);
 }
