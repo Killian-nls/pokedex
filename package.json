@@ -1,0 +1,27 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "MMI Project S6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --env-file=.env server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Killian-nls/pokedex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Killian-nls/pokedex/issues"
+  },
+  "homepage": "https://github.com/Killian-nls/pokedex#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.0",
+    "nodemon": "^3.1.9"
+  }
+}
