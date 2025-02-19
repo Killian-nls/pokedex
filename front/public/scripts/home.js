@@ -167,6 +167,28 @@ nextButton.addEventListener('click', async (event) => {
     pageDisplay.textContent = pageIndex;
 });
 
+document.addEventListener('keydown', async (event) => {
+    if (event.key === 'ArrowRight') {
+        pageIndex++;
+        if (pageIndex > 103) {
+            pageIndex = 103;
+        } else {
+            pokemonContainer.innerHTML = '';
+            getPokemon(partialName, typeOneContainer.alt, typeTwoContainer.alt, size, pageIndex);
+            pageDisplay.textContent = pageIndex;
+        }
+    } else if (event.key === 'ArrowLeft') {
+        pageIndex--;
+        if (pageIndex < 1) {
+            pageIndex = 1;
+        } else {
+            pokemonContainer.innerHTML = '';
+            getPokemon(partialName, typeOneContainer.alt, typeTwoContainer.alt, size, pageIndex);
+            pageDisplay.textContent = pageIndex;
+        }
+    }
+});
+
 previousButton.addEventListener('click', async (event) => {
     if (pageIndex > 1) {
         pokemonContainer.innerHTML = '';
