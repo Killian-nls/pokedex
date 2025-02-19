@@ -1,56 +1,63 @@
-# My Express App
+# Pokedex Front
 
-This is a simple Express.js application that serves a front-end application. It is structured to separate concerns between the server-side logic and the client-side assets.
+## Description
+Ce projet est une interface utilisateur pour un Pokédex, permettant aux utilisateurs de rechercher, voir et capturer des Pokémon. Il inclut également des fonctionnalités de gestion de profil de dresseur et un chat en temps réel.
 
-## Project Structure
-
-```
-my-express-app
-├── src
-│   ├── app.ts                # Entry point of the application
-│   ├── controllers           # Contains controllers for handling requests
-│   │   └── index.ts
-│   ├── routes                # Defines the application routes
-│   │   └── index.ts
-│   └── types                 # Custom TypeScript types
-│       └── index.ts
-├── public                    # Static files served to the client
-│   ├── scripts               # JavaScript files for front-end functionality
-│   │   └── script.js
-│   ├── styles                # CSS files for styling the application
-│   │   └── style.css
-│   └── index.html            # Main HTML file
-├── package.json              # NPM package configuration
-├── tsconfig.json             # TypeScript configuration
-└── README.md                 # Project documentation
-```
+## Fonctionnalités
+- **Recherche de Pokémon** : Recherchez des Pokémon par nom ou par type.
+- **Affichage des détails des Pokémon** : Affichez les informations détaillées sur chaque Pokémon, y compris leur taille, poids, types et régions.
+- **Gestion de profil de dresseur** : Créez et mettez à jour votre profil de dresseur avec un nom et une image de profil.
+- **Connexion et inscription** : Connectez-vous ou inscrivez-vous pour accéder à votre Pokédex personnel.
+- **Chat en temps réel** : Discutez avec d'autres utilisateurs connectés via un chat en temps réel.
 
 ## Installation
-
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   ```
-
-2. Navigate to the project directory:
-   ```
-   cd my-express-app
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/Killian-nls/pokedex.git
+   cd pokedex/front
    ```
 
-3. Install the dependencies:
-   ```
+2. Installez les dépendances :
+   ```bash
    npm install
    ```
 
-## Usage
+3. Configurez les variables d'environnement :
+   Copiez le fichier `.env.example` en `.env` et remplissez les valeurs appropriées :
+   ```example
+   POKEMON_API_BASE_URL=http://votre-api-url
+   WS_BASE_URL=ws://votre-websocket-url
+   ```
 
-To start the application, run:
-```
-npm start
-```
+4. Démarrez le serveur :
+   ```bash
+   npm run dev
+   ```
 
-The application will be available at `http://localhost:3000`.
+## Utilisation
+- Accédez à l'application via `http://localhost:3001`.
+- Inscrivez-vous ou connectez-vous pour accéder à votre Pokédex.
+- Recherchez des Pokémon, affichez leurs détails et marquez-les comme vus ou capturés.
+- Gérez votre profil de dresseur.
+- Utilisez le chat en temps réel pour discuter avec d'autres utilisateurs.
 
-## Contributing
+## Scripts
+- `npm start` : Démarre l'application en mode production.
+- `npm run build` : Compile le TypeScript en JavaScript.
+- `npm run dev` : Démarre l'application en mode développement avec rechargement à chaud.
 
-Feel free to submit issues or pull requests for any improvements or bug fixes.
+## Dépendances
+- `dotenv` : Charge les variables d'environnement depuis un fichier `.env`.
+- `express` : Framework web pour Node.js.
+- `express-handlebars` : Moteur de template pour Express.
+- `ts-node` : Exécute les fichiers TypeScript directement.
+- `ts-node-dev` : Redémarre automatiquement le serveur lors de modifications de fichiers TypeScript.
+- `typescript` : Langage de programmation typé pour JavaScript.
+
+## Développeur
+- **Killian Mathé**
+  - [Portfolio](https://killian-mathe.fr)
+  - [GitHub](https://github.com/Killian-nls/pokedex)
+
+## Licence
+Ce projet est sous licence ISC.
