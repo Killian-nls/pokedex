@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../styles/trainers.css">
+<script src="../scripts/trainers.js" defer></script>
+<div class="create-trainer-container">
+  <div class="trainer-form-card">
+    <h2>Créer votre profil de dresseur</h2>
+    <form id="create-trainer-form" class="trainer-form">
+      <div class="form-group">
+        <label for="create-trainer-name">Nom de dresseur</label>
+        <input 
+          type="text" 
+          id="create-trainer-name" 
+          name="trainerName" 
+          placeholder="Ex: Red, Sacha..."
+          required
+        >
+      </div>
+      <div class="image-upload-section">
+        <h3>Choisissez votre photo de profil</h3>
+        <div class="url-input-area">
+            <input 
+            type="url" 
+            id="create-trainer-img-url" 
+            name="imgUrl" 
+            placeholder="https://votre-image.com/image.jpg"
+            >
+        </div>
+      </div>
+      <button type="submit">Créer mon profil</button>
+    </form>
+  </div>
+</div>
+
+<div class="trainer-container">
+  <div class="trainer-form-card">
+    <h2>Modifier votre profil</h2>
+    <form id="update-trainer-form" class="trainer-form">
+      <div class="form-group">
+        <label for="update-trainer-name">Nom de dresseur</label>
+        <input 
+          type="text" 
+          id="update-trainer-name" 
+          class="updateTrainerName"
+          name="trainerName" 
+          placeholder="Nouveau nom de dresseur"
+          required
+        >
+      </div>
+      <div class="image-upload-section">
+        <h3>Choisissez votre photo de profil</h3>
+        <div class="url-input-area">
+            <input 
+            type="url" 
+            id="create-trainer-img-url" 
+            name="imgUrl" 
+            class="updateTrainerImgUrl"
+            placeholder="https://votre-image.com/image.jpg"
+            >
+        </div>
+      </div>
+      <div class="trainer-stats">
+        <p>Pokémon vus: <span class="pokemon-seen" id="pokemon-seen">0</span></p>
+        <p>Pokémon capturés: <span class="pokemon-captured" id="pokemon-captured">0</span></p>
+        <p>Dresseur depuis: <span class="trainer-since" id="trainer-since">-</span></p>
+      </div>
+      <button type="submit">Mettre à jour mon profil</button>
+    </form>
+  </div>
+</div>

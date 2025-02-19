@@ -1,0 +1,33 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        const baseUrl = "{{baseUrl}}";
+        const wsBaseUrl = "{{wsUrl}}";
+    </script>
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/chat.css">
+    <script src="../../scripts/script.js" defer></script>
+    <script src="../../scripts/chat.js" defer></script>
+    <link rel="icon" href="../../assets/icons/pokeball.svg">
+</head>
+<body>
+    <header>
+        <h1 onclick="window.location.href='/'">Pokedex</h1>
+        <nav>
+
+        </nav>
+    </header>
+    <div class="container">
+        {{{ body }}}
+    </div>
+    <footer>
+        <p>Projet MMI S6</p>
+        <p>Développé par Killian Mathé</p>
+        <p><a href="https://github.com/Killian-nls/pokedex" target="_blank">Lien vers le git</a></p>
+        <p><a href="https://killian-mathe.fr" target="_blank">Mon portfolio</a></p>
+    </footer>
+</body>
+</html>

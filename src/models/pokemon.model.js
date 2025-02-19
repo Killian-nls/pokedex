@@ -20,6 +20,9 @@ pokemonSchema.pre('save', function(next) {
     this.regions.forEach(region => {
         region.regionName = region.regionName[0].toUpperCase() + region.regionName.slice(1).toLowerCase();
     });
+    this.types.forEach(type => {
+        type = type.toLowerCase();
+    });
     next();
 });
 

@@ -1,0 +1,234 @@
+:root {
+  /* Dark theme (default) */
+  --primary-dark: #1a1b26;
+  --secondary-dark: #24283b;
+  --text-dark: #c0caf5;
+  --accent-dark: #7aa2f7;
+  --hover-dark: #3d59a1;
+  --button-bg-dark: #414868;
+  --footer-bg-dark: rgba(26, 27, 38, 0.9);
+
+  /* Light theme variables */
+  --primary-light: #f7f7f7;
+  --secondary-light: #e3e8f1;
+  --text-light: #2a2a2a;
+  --accent-light: #3d59a1;
+  --hover-light: #7aa2f7;
+  --button-bg-light: #d5dbed;
+  --footer-bg-light: rgba(247, 247, 247, 0.9);
+
+  /* Common variables */
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --max-width: 1200px;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header styles */
+header {
+  background-color: var(--secondary-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  background: linear-gradient(45deg, var(--accent-dark), var(--hover-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: transform var(--transition-speed);
+}
+
+header h1:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Navigation styles */
+nav button {
+  background-color: var(--button-bg-dark);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+nav button:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(122, 162, 247, 0.2);
+}
+
+nav button:active {
+  transform: translateY(0);
+}
+
+nav span {
+  margin-right: 10px;
+}
+
+nav img {
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+  border-radius: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  background-color: var(--primary-dark);
+  transition: all var(--transition-speed);
+}
+
+nav img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Container styles */
+.container {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1;
+}
+
+/* Footer styles - Updated to be more compact */
+footer {
+  background-color: var(--footer-bg-dark);
+  padding: 0.8rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+footer a:hover {
+  color: var(--hover-dark);
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--primary-light);
+    color: var(--text-light);
+  }
+
+  header {
+    background-color: var(--secondary-light);
+  }
+
+  nav button {
+    background-color: var(--button-bg-light);
+    color: var(--text-light);
+  }
+
+  nav button:hover {
+    background-color: var(--accent-light);
+    color: var(--primary-light);
+  }
+
+  footer {
+    background-color: var(--footer-bg-light);
+  }
+
+  footer a {
+    color: var(--accent-light);
+  }
+
+  footer a:hover {
+    color: var(--hover-light);
+  }
+
+  nav img {
+    background-color: var(--primary-light) !important;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@media (max-width: 1000px) {
+  .username {
+    display: none;
+  }
+
+  nav img {
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    border-radius: 100px;
+    object-fit: cover;
+    background-color: var(--primary-dark);
+  }
+
+  header {
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  body {
+    width: 100vw;
+  }
+}

@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = express()
 const port = 3000
 
+
+
 app.use(cors());
 app.use(express.urlencoded({extended:true }));
 app.use(express.json());
@@ -14,9 +16,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/pokedex')
 
 const pokemonRouter = require('./src/routes/pokemon');
 const userRouter = require('./src/routes/user');
+const trainerRouter = require('./src/routes/trainer');
+const wss = require('./websocket');
 
 app.use('/api/pkmn',pokemonRouter);
-// app.use('/type',typeRouter);
+app.use('/api/trainers',trainerRouter);
 app.use('/users', userRouter);
 
 

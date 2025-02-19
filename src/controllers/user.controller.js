@@ -43,6 +43,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUserByIdOrMail = async (req, res) => {
     req.auth.role = await getRole(req.auth.userId);
+    console.log("test");
     const id_or_mail = req.params.id_or_mail;
     let result;
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id_or_mail)) {
@@ -58,6 +59,7 @@ exports.getUserByIdOrMail = async (req, res) => {
         return res.status(200).json({
             'firstname': result.firstname,
             'lastname': result.lastname,
+            'username': result.username,
         });
     }
     return res.status(200).json(result);

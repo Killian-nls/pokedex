@@ -10,7 +10,7 @@ class userService {
         try {
             result = this.userModel.findById(id)
         } catch (error) {
-            result = { error: error }
+            result = { error: error.message }
         }
         return result;
     }
@@ -20,7 +20,18 @@ class userService {
         try {
             result = await this.userModel.findOne({ email: email });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
+        }
+        return result;
+    }
+
+    async getUserByUsername(username) {
+        let result;
+        try {
+            result = await this.userModel.findOne({ username: username });
+        }
+        catch (error) {
+            result = { error: error.message };
         }
         return result;
     }
@@ -31,7 +42,7 @@ class userService {
             result = await this.userModel.findById(id);
             result = result.role
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -98,7 +109,7 @@ class userService {
         try {
             result = await this.userModel.find({});
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }

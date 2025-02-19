@@ -1,0 +1,237 @@
+.auth-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: var(--secondary-dark);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.login-register {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.login-side, .register-side {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form Styles */
+.form-group {
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: var(--primary-dark);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: all var(--transition-speed);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-dark);
+    box-shadow: 0 0 0 2px rgba(122, 162, 247, 0.2);
+}
+
+.form-group input::placeholder {
+    color: rgba(192, 202, 245, 0.6);
+}
+
+form button {
+    width: 100%;
+    max-width: 380px;
+    padding: 0.8rem;
+    background: var(--accent-dark);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+form button:hover {
+    background: var(--hover-dark);
+    transform: translateY(-2px);
+}
+
+/* Panel Styles */
+.panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.auth-container.register-mode .panel {
+    transform: translateX(-100%);
+}
+
+.panel-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: linear-gradient(45deg, var(--accent-dark), var(--hover-dark));
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-login, .panel-register {
+    flex: 1;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.panel h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.panel p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.toggle-btn {
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.toggle-btn:hover {
+    background: white;
+    color: var(--accent-dark);
+}
+
+@media (prefers-color-scheme: light) {
+    .panel h3 {
+        color: var(--text-dark);
+    }
+
+    .auth-container {
+        background: var(--secondary-light);
+    }
+
+    .form-group input {
+        background: var(--primary-light);
+        color: var(--text-light);
+    }
+
+    .form-group input::placeholder {
+        color: var(--text-light);
+    }
+
+    form button {
+        background: var(--accent-dark);
+        color: var(--text-light);
+    }
+}
+
+@media (max-width: 500px) {
+    .login-register {
+        flex-direction: column;
+        height: 200%;
+        justify-content: space-between;
+    }   
+    
+    .auth-container.register-mode .login-register {
+        transform: translateY(-50%);;
+    }
+
+    .login-side {
+        height: 80%;
+        padding: 0;
+        justify-content: end;
+    }
+    
+    .register-side {
+        height: 80%;
+        padding: 0;
+        justify-content: start;
+    }
+
+    .login-register .form-group {
+        margin-bottom: 10px;
+    }
+
+    .panel {
+        width: 100%;
+        height: 20%;
+    }
+
+    .panel h3 {
+        margin: 0;
+    }
+
+    .panel p {
+        display: none;
+    }
+
+    .auth-container .panel {
+        height: 50%;
+    }
+
+    .auth-container.register-mode .panel {
+        transform: translateY(0%);
+        top: 80%;
+        height: 20%;
+    }
+
+    .register-form,
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group {
+        width: 90%;
+    }
+
+    form button {
+        width: 90%;
+    }
+}

@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="../styles/login.css">
+<div class="auth-container register-mode">
+  <div class="forms-container">
+    <div class="login-register">
+      <!-- Côté Login -->
+      <div class="login-side">
+        <h2>Se connecter</h2>
+        <form action="" method="POST" class="login-form">
+          <div class="form-group">
+            <input placeholder="Email" type="email" id="login-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <input placeholder="Mot de passe" type="password" id="login-password" name="password" required>
+          </div>
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
+      
+      <!-- Côté Register -->
+      <div class="register-side">
+        <h2>Créer un compte</h2>
+        <form action="" method="POST" class="register-form">
+          <div class="form-group">
+            <input placeholder="Prénom" type="text" id="firstname" name="firstname">
+          </div>
+          <div class="form-group">
+            <input placeholder="Nom" type="text" id="lastname" name="lastname">
+          </div>
+          <div class="form-group">
+            <input placeholder="Pseudo" type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <input placeholder="Email" type="email" id="register-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <input placeholder="Mot de passe" type="password" id="register-password" name="password" required>
+          </div>
+          <button type="submit">Créer un compte</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Panneau de navigation -->
+  <div class="panel">
+    <div class="panel-content">
+        <h3>Déjà membre ?</h3>
+        <p>Connectez-vous pour accéder à votre Pokédex</p>
+        <button class="toggle-btn" id="login-btn">Se connecter</button>
+    </div>
+  </div>
+</div>
+<script src="../scripts/login.js"></script>

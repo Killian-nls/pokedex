@@ -8,7 +8,7 @@ router.get('/types', pokemonController.getTypes);
 router.post('/', authM, pokemonController.addPokemon);
 router.get('/all', authM, pokemonController.getPokemons);
 router.post('/region', authM, pokemonController.addRegion);
-router.get('/search', authM, pokemonController.searchPokemon);
+router.get('/search', pokemonController.searchPokemon);
 router.get('/', authM, pokemonController.getPokemon);
 router.delete('/', authM, pokemonController.deletePokemon);
 router.put('/', authM, pokemonController.updatePokemon);

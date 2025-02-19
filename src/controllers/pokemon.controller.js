@@ -56,7 +56,6 @@ exports.getPokemonsByRegion = async (req, res) => {
 }
 
 exports.searchPokemon = async (req, res) => {
-    req.auth.role = await getRole(req.auth.userId);
     const partialName = req.query.partialName;
     const typeOne = req.query.typeOne;
     const typeTwo = req.query.typeTwo;

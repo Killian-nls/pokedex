@@ -13,7 +13,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.find({});
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -23,7 +23,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findById(id);
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -34,7 +34,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findOne({ name: name });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -46,18 +46,19 @@ class PokemonService {
         }
         if (typeOne || typeTwo) {
             query.types = { $all: [] };
-            if (typeOne) query.types.$all.push(typeOne);
-            if (typeTwo) query.types.$all.push(typeTwo);
+            if (typeOne) query.types.$all.push(typeOne.toLowerCase());
+            if (typeTwo) query.types.$all.push(typeTwo.toLowerCase());
         }
         if (!page) page = 1;
         if (!size) size = 20;
         let result;
         try {
             result = await this.pokemonModel.find(query)
+            .sort({ 'regions.regionName': 1, 'regions.regionPokedexNumber': 1 })
             .skip((page - 1) * size)
             .limit(size);
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -67,7 +68,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.create(pokemon);
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -87,7 +88,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findByIdAndUpdate(id, pokemon);
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -97,7 +98,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findByIdAndDelete(id);
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -107,7 +108,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.find({ types: { $in: [type] } });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -117,7 +118,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.find({ regions: { $elemMatch: { regionName: region } } });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -127,7 +128,7 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findByIdAndUpdate(id, { $push: { regions: region } });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
     }
@@ -137,11 +138,10 @@ class PokemonService {
         try {
             result = await this.pokemonModel.findByIdAndUpdate(id, { $pull: { regions: { regionName: regionName } } });
         } catch (error) {
-            result = { error: error };
+            result = { error: error.message };
         }
         return result;
-    }
-    
+    }   
 }
 
 module.exports = PokemonService;
