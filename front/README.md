@@ -9,6 +9,8 @@ Ce projet est une interface utilisateur pour un Pokédex, permettant aux utilisa
 - **Gestion de profil de dresseur** : Créez et mettez à jour votre profil de dresseur avec un nom et une image de profil.
 - **Connexion et inscription** : Connectez-vous ou inscrivez-vous pour accéder à votre Pokédex personnel.
 - **Chat en temps réel** : Discutez avec d'autres utilisateurs connectés via un chat en temps réel.
+- **Affichage responsive** : Utiliez l'application sur téléphone ou tablette
+- **Support thème sombre / lumineux** : En fonction du paramétrage par défaut de votre appareil
 
 ## Installation
 1. Clonez le dépôt :

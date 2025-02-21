@@ -31,6 +31,10 @@ Ce projet est une application de Pokédex permettant aux utilisateurs de recherc
     ```example
     TOKEN_SECRET="94ce0193...8qs1"
     ```
+4. Démarrez la base de données :
+    ```bash
+    ./[MONGOD_PATH]/bin/mongod --dbpath data
+    ```
 
 4. Démarrez le serveur :
     ```bash
